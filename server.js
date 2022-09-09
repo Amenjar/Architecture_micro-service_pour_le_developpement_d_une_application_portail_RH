@@ -1,0 +1,14 @@
+const express = require("express");
+const ConnectDb = require("./config/ConnectDb");
+const AuthRoute = require("./routes/Auth");
+const PayslipRoute = require("./routes/BulletinDePaie");
+const DemandeRoute = require("./routes/Demande");
+require("dotenv").config();
+const app = express();
+app.use(express.json());
+ConnectDb();
+app.use("/api/Auth", AuthRoute);
+app.use("/api/Demande", DemandeRoute);
+app.use("/api/BulletinDePaie", PayslipRoute);
+const port = 5000;
+app.listen(port, () => console.log(`server is running on port ${port}`));
